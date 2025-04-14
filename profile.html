@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoodieHub Profile</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #0f172a; /* Dark background */
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    a, a:hover {
+      text-decoration: none;
+      color: #e2e8f0;
+    }
+    /* Navbar */
+    .navbar-dark .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .navbar-brand span {
+      color: #6366f1; /* Purple accent color */
+    }
+    .nav-link {
+      color: #cbd5e1 !important;
+      font-weight: 500;
+    }
+    .nav-link:hover {
+      color: #ffffff !important;
+    }
+    /* Profile Card */
+    .profile-card {
+      background-color: #1e293b;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .profile-card .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-details h4 {
+      margin: 0;
+      font-weight: 700;
+    }
+    .profile-details p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+    .btn-edit {
+      background-color: #6366f1;
+      color: #ffffff;
+      font-weight: 500;
+      border: none;
+    }
+    .btn-edit:hover {
+      background-color: #4f51c0;
+    }
+    /* Common Card Styling */
+    .dark-card {
+      background-color: #1e293b;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      color: #cbd5e1;
+    }
+    .dark-card h5 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    /* Enhanced Order History Styling */
+    .order-history-container {
+      margin-top: 1rem;
+    }
+    .order-card {
+      background-color: #1e293b;
+      border: 1px solid #374151;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .order-card .card-header {
+      background-color: #111827;
+      border-bottom: 1px solid #374151;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .order-card .card-body {
+      color: #e2e8f0;
+    }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #374151;
+    }
+    .order-item:last-child {
+      border-bottom: none;
+    }
+    .order-date {
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+    /* Edit Preferences Button at Bottom */
+    .btn-pref {
+      background-color: #6366f1;
+      color: #ffffff;
+      font-weight: 500;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .btn-pref:hover {
+      background-color: #4f51c0;
+    }
+    /* Adjust spacing in the bottom section */
+    .bottom-section {
+      margin-bottom: 4rem;
+    }
+    /* Responsive Tweaks */
+    @media (max-width: 576px) {
+      .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .profile-info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #0f172a;">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <div style="width: 30px; height: 30px; border-radius: 50%; background-color: #6366f1;"></div>
+        <span>FoodieHub</span>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cuisines</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container py-4">
+    <!-- Profile Card -->
+    <div class="card profile-card">
+      <div class="profile-header">
+        <div class="profile-info">
+          <!-- User Avatar -->
+          <img
+            src="https://via.placeholder.com/150x150"
+            alt="Profile Image"
+            class="avatar"
+          />
+          <!-- User Details -->
+          <div class="profile-details">
+            <h4>Sarah Johnson</h4>
+            <p>
+              sarah.j@email.com<br/>
+              +1 1231234567<br/>
+              123 Main Street, New York, NY 10001
+            </p>
+          </div>
+        </div>
+        <!-- Edit Profile Button -->
+        <button class="btn btn-edit">Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- Row of Two Cards: Dietary Preferences & Favorite Items -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="dark-card h-100">
+          <h5>Dietary Preferences</h5>
+          <p class="mb-1"><strong>Diet Type:</strong> Vegetarian</p>
+          <p class="mb-1"><strong>Spice Level:</strong> Medium</p>
+          <p class="mb-0"><strong>Allergies:</strong> None</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="dark-card h-100">
+          <h5>Favorite Items</h5>
+          <p class="mb-2">Butter Chicken</p>
+          <p class="mb-0">Vegetable Biryani</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Row for "Edit Preferences & Favorites" Button -->
+    <div class="mb-4 text-center">
+      <a href="edit-preferences.html" class="btn-pref">Edit Preferences &amp; Favorites</a>
+    </div>
+
+    <!-- Order History Section -->
+    <div class="bottom-section">
+      <div class="dark-card">
+        <h5>Order History</h5>
+        <!-- Example: Order Card #1 -->
+        <div class="card order-card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Order #1</span>
+            <span class="order-date">2024-01-10</span>
+          </div>
+          <div class="card-body">
+            <div class="order-item">
+              <span>Butter Chicken</span>
+              <span>$24.99</span>
+            </div>
+            <div class="order-item">
+              <span>Raita</span>
+              <span>$2.99</span>
+            </div>
+          </div>
+        </div>
+        <!-- Example: Order Card #2 -->
+        <div class="card order-card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Order #2</span>
+            <span class="order-date">2024-01-09</span>
+          </div>
+          <div class="card-body">
+            <div class="order-item">
+              <span>Vegetable Biryani</span>
+              <span>$18.50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Bootstrap JS (Optional for interactivity) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
