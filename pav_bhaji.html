@@ -2,63 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pav Bhaji Recipe</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pav Bhaji - FoodieHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      background-color: #ffecb3;
-      color: #333;
+      background-color: #0e1b30;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
     }
-    .recipe-container {
-      padding: 50px 20px;
+    .navbar {
+      background-color: #192a46;
     }
-    .recipe-image {
+    .navbar a {
+      color: white !important;
+    }
+    .navbar a:hover {
+      color: #7d4efc !important;
+    }
+    .recipe-header {
+      margin-top: 30px;
+    }
+    .recipe-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+    .recipe-img {
+      border-radius: 15px;
+      max-height: 100%;
       max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
     }
-    h2 {
-      color: #ff5722;
-      font-weight: bold;
+    .section-title {
+      margin-top: 40px;
+      border-bottom: 2px solid #5c8df6;
+      display: inline-block;
+      padding-bottom: 5px;
     }
-    h4 {
-      color: #f44336;
-      margin-top: 25px;
+    .btn-purple {
+      background-color: #7d4efc;
+      color: white;
     }
-    ul, ol {
-      line-height: 1.8;
+    .btn-purple:hover {
+      background-color: #5c3ccc;
     }
   </style>
 </head>
 <body>
 
-  <div class="container recipe-container">
-    <h2>Pav Bhaji</h2>
-    <img src="https://source.unsplash.com/800x400/?pav-bhaji" alt="Pav Bhaji" class="recipe-image my-3" />
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="homepage.html">FoodieHub</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuisine">Cuisines</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="favourites.html">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <h4>Ingredients:</h4>
-    <ul>
-      <li>2 cups mixed vegetables (potato, carrot, peas, cauliflower)</li>
-      <li>2 tbsp oil</li>
-      <li>1 large onion, chopped</li>
-      <li>2 tomatoes, chopped</li>
-      <li>1 tbsp ginger-garlic paste</li>
-      <li>1 tbsp pav bhaji masala</li>
-      <li>Salt to taste</li>
-      <li>Butter</li>
-      <li>4 pav (bread rolls)</li>
-      <li>Fresh coriander for garnish</li>
+  <div class="container recipe-header">
+    <div class="text-center mb-4">
+      <button class="btn btn-purple">❤️ Add to Favourites</button>
+    </div>
+
+    <h1 class="text-center">Mumbai-Style Pav Bhaji</h1>
+    <p class="text-center text-secondary">Prep time: 15 mins | Cook time: 25 mins | Serves: 4</p>
+
+    <div class="recipe-img-container">
+      <img src="photos/pav bhaji.jpg" class="img-fluid recipe-img" alt="Pav Bhaji" />
+    </div>
+
+    <h3 class="section-title">Ingredients</h3>
+    <ul class="mt-3">
+      <li>4 pav buns</li>
+      <li>2 tbsp butter</li>
+      <li>2 potatoes, boiled and mashed</li>
+      <li>1/2 cup green peas</li>
+      <li>1 onion, finely chopped</li>
+      <li>1 tomato, chopped</li>
+      <li>1/2 capsicum, chopped</li>
+      <li>2 tsp pav bhaji masala</li>
+      <li>1 tsp red chili powder</li>
+      <li>Lemon, coriander leaves</li>
     </ul>
 
-    <h4>Instructions:</h4>
-    <ol>
-      <li>Boil the vegetables and mash them.</li>
-      <li>Heat oil in a pan, sauté onions until golden, then add ginger-garlic paste and tomatoes.</li>
-      <li>Add pav bhaji masala and mashed vegetables, then cook for a few minutes.</li>
-      <li>Toast pav in butter and serve with the bhaji, garnished with coriander.</li>
+    <h3 class="section-title">Instructions</h3>
+    <ol class="mt-3">
+      <li>Heat butter and sauté onions till golden. Add tomatoes and capsicum and cook.</li>
+      <li>Add mashed potatoes, peas, masala and mix well. Mash and simmer with water.</li>
+      <li>Toast pav with butter on a tawa.</li>
+      <li>Serve hot bhaji with buttered pav, lemon, and chopped onions.</li>
     </ol>
+
+    <div class="text-center mt-5">
+      <a href="homepage.html" class="btn btn-purple">⬅ Back to Homepage</a>
+    </div>
   </div>
 
 </body>

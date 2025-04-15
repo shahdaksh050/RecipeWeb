@@ -11,6 +11,7 @@
       margin: 0;
       background-color: #0f172a;
       color: #ffffff;
+      overflow-x: hidden;
     }
     header {
       background-color: #0f172a;
@@ -37,10 +38,10 @@
       font-weight: 500;
     }
     .hero {
-      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092');
+      background-image: url("photos/american.jpg");
       background-size: cover;
       background-position: center;
-      padding: 4rem 2rem;
+      padding: 8rem 2rem;
       text-align: center;
       color: white;
     }
@@ -56,28 +57,34 @@
       font-size: 1.5rem;
       font-weight: 600;
     }
+
+    /* Responsive Grid Layout for Recipe Cards */
     .dish-container {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       padding: 0 2rem 2rem 2rem;
     }
+
     .dish-card {
+      position: relative; /* Needed to position the favorite button absolutely */
       background-color: #1e293b;
       border-radius: 1rem;
       overflow: hidden;
-      flex: 1 1 calc(33% - 2rem);
       display: flex;
       flex-direction: column;
-      min-width: 250px;
     }
     .dish-card img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: 250px;
+      object-fit: cover; /* Maintains image aspect ratio while filling its container */
     }
     .dish-content {
       padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .dish-title {
       font-size: 1.2rem;
@@ -112,6 +119,49 @@
       color: #94a3b8;
       border: 1px solid #94a3b8;
     }
+
+    /* Favorite (Heart) Button */
+    .fav-btn {
+      position: absolute; /* Absolute positioning inside the card */
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .fav-btn:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    .fav-btn img {
+      width: 20px;
+      height: 20px;
+      filter: invert(100%);
+    }
+    /* When button is toggled, you could style it differently. Example: a red heart */
+    .fav-btn.favorited img {
+      filter: none; /* remove invert filter so it can appear in another color, or show a different icon if you prefer */
+    }
+
+    /* Custom Footer Styling */
+    .footer {
+      background-color: #0f172a;
+      color: #cbd5e1;
+      padding: 2rem 0;
+    }
+    .footer a {
+      color: #6366f1;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -133,7 +183,7 @@
     <h2 class="section-title">Popular Dishes</h2>
     <div class="dish-container">
       <div class="dish-card">
-        <img src="https://source.unsplash.com/800x400/?burger" alt="Cheeseburger" />
+        <img src="photos/cheeseburger.jpg" alt="Cheeseburger" />
         <div class="dish-content">
           <div class="dish-title">Cheeseburger</div>
           <div class="dish-info">
@@ -149,9 +199,9 @@
       </div>
 
       <div class="dish-card">
-        <img src="https://source.unsplash.com/800x400/?mac-and-cheese" alt="Mac and Cheese" />
+        <img src="photos/sandwhich.jpg" alt="Cheese Sandwhich" />
         <div class="dish-content">
-          <div class="dish-title">Mac & Cheese</div>
+          <div class="dish-title">Cheese Sandwhich</div>
           <div class="dish-info">
             <span>⭐ 4.9</span>
             <span>⏱ 40 mins</span>
@@ -159,31 +209,18 @@
           </div>
           <div class="buttons">
             <button class="btn btn-order">Order Now</button>
-            <a href="mac-and-cheese.html"><button class="btn btn-view">View Recipe</button></a>
+            <a href="sandwhich.html"><button class="btn btn-view">View Recipe</button></a>
           </div>
         </div>
       </div>
 
-      <div class="dish-card">
-        <img src="https://source.unsplash.com/800x400/?bbq-ribs" alt="BBQ Ribs" />
-        <div class="dish-content">
-          <div class="dish-title">BBQ Ribs</div>
-          <div class="dish-info">
-            <span>⭐ 4.8</span>
-            <span>⏱ 90 mins</span>
-            <span>Hard</span>
-          </div>
-          <div class="buttons">
-            <button class="btn btn-order">Order Now</button>
-            <a href="bbq-ribs.html"><button class="btn btn-view">View Recipe</button></a>
-          </div>
-        </div>
-      </div>
+      
+      
 
       <div class="dish-card">
-        <img src="https://source.unsplash.com/800x400/?pancakes" alt="Pancakes" />
+        <img src="photos/pancake.jpg" alt="Nutella Strawberry Pancakes" />
         <div class="dish-content">
-          <div class="dish-title">Pancakes</div>
+          <div class="dish-title">Nutella Strawberry Pancakes</div>
           <div class="dish-info">
             <span>⭐ 5.0</span>
             <span>⏱ 20 mins</span>
@@ -191,31 +228,16 @@
           </div>
           <div class="buttons">
             <button class="btn btn-order">Order Now</button>
-            <a href="pancakes.html"><button class="btn btn-view">View Recipe</button></a>
+            <a href="nutella_strawberry.html"><button class="btn btn-view">View Recipe</button></a>
           </div>
         </div>
       </div>
 
-      <div class="dish-card">
-        <img src="https://source.unsplash.com/800x400/?grilled-cheese" alt="Grilled Cheese Sandwich" />
-        <div class="dish-content">
-          <div class="dish-title">Grilled Cheese</div>
-          <div class="dish-info">
-            <span>⭐ 4.6</span>
-            <span>⏱ 10 mins</span>
-            <span>Easy</span>
-          </div>
-          <div class="buttons">
-            <button class="btn btn-order">Order Now</button>
-            <a href="grilled-cheese.html"><button class="btn btn-view">View Recipe</button></a>
-          </div>
-        </div>
-      </div>
 
       <div class="dish-card">
-        <img src="photos/american.jpg" alt="Vegetarian Chili" />
+        <img src="photos/apple pie1.jpg" alt="Apple Pie" />
         <div class="dish-content">
-          <div class="dish-title">Vegetarian Chili</div>
+          <div class="dish-title">Apple Pie</div>
           <div class="dish-info">
             <span>⭐ 4.8</span>
             <span>⏱ 50 mins</span>

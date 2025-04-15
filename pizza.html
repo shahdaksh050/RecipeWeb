@@ -2,63 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pizza Recipe</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizza - FoodieHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      background-color: #001f3f;
-      color: #ffffff;
+      background-color: #0e1b30;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
     }
-    .recipe-container {
-      padding: 50px 20px;
+    .navbar {
+      background-color: #192a46;
     }
-    .recipe-image {
+    .navbar a {
+      color: white !important;
+    }
+    .navbar a:hover {
+      color: #7d4efc !important;
+    }
+    .recipe-header {
+      margin-top: 30px;
+    }
+    .recipe-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+    .recipe-img {
+      border-radius: 15px;
+      max-height: 100%;
       max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
     }
-    h2 {
-      color: #ffcc00;
-      font-weight: bold;
+    .section-title {
+      margin-top: 40px;
+      border-bottom: 2px solid #5c8df6;
+      display: inline-block;
+      padding-bottom: 5px;
     }
-    h4 {
-      color: #00d1ff;
-      margin-top: 25px;
+    .btn-purple {
+      background-color: #7d4efc;
+      color: white;
     }
-    ul, ol {
-      line-height: 1.8;
+    .btn-purple:hover {
+      background-color: #5c3ccc;
     }
   </style>
 </head>
 <body>
 
-  <div class="container recipe-container">
-    <h2>Classic Margherita Pizza</h2>
-    <img src="https://source.unsplash.com/800x400/?pizza" alt="Pizza" class="recipe-image my-3" />
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="homepage.html">FoodieHub</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuisine">Cuisines</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="favourites.html">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <h4>Ingredients:</h4>
-    <ul>
+  <div class="container recipe-header">
+    <div class="text-center mb-4">
+      <button class="btn btn-purple">❤️ Add to Favourites</button>
+    </div>
+
+    <h1 class="text-center">Classic Margherita Pizza</h1>
+    <p class="text-center text-secondary">Prep time: 20 mins | Cook time: 15 mins | Serves: 2-3</p>
+
+    <div class="recipe-img-container">
+      <img src="photos/pizza.jpg" class="img-fluid recipe-img" alt="Pizza" />
+    </div>
+
+    <h3 class="section-title">Ingredients</h3>
+    <ul class="mt-3">
       <li>1 pizza base (store-bought or homemade)</li>
       <li>1/2 cup pizza sauce</li>
       <li>1 cup shredded mozzarella cheese</li>
       <li>Fresh basil leaves</li>
+      <li>1 tomato, sliced</li>
       <li>1 tsp olive oil</li>
-      <li>Salt and pepper to taste</li>
-      <li>Optional: sliced tomatoes or olives</li>
+      <li>Oregano and chili flakes to taste</li>
     </ul>
 
-    <h4>Instructions:</h4>
-    <ol>
+    <h3 class="section-title">Instructions</h3>
+    <ol class="mt-3">
       <li>Preheat the oven to 220°C (425°F).</li>
-      <li>Spread pizza sauce evenly over the base.</li>
-      <li>Sprinkle mozzarella cheese generously.</li>
-      <li>Add toppings like tomatoes or olives if using.</li>
-      <li>Bake for 10–12 minutes until the crust is crisp and cheese is melted.</li>
-      <li>Top with basil leaves, drizzle olive oil, and sprinkle salt and pepper.</li>
+      <li>Place the pizza base on a baking tray.</li>
+      <li>Spread pizza sauce evenly on the base.</li>
+      <li>Sprinkle mozzarella cheese over the sauce.</li>
+      <li>Add tomato slices and fresh basil leaves.</li>
+      <li>Drizzle with olive oil and sprinkle oregano/chili flakes.</li>
+      <li>Bake in the oven for 12–15 minutes or until the cheese is melted and bubbly.</li>
       <li>Slice and serve hot!</li>
     </ol>
+
+    <div class="text-center mt-5">
+      <a href="homepage.html" class="btn btn-purple">⬅ Back to Homepage</a>
+    </div>
   </div>
 
 </body>

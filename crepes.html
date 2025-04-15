@@ -1,61 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>French Crêpes Recipe</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crepes - FoodieHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff7ed;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #f97316;
+      background-color: #0e1b30;
       color: white;
-      text-align: center;
-      padding: 1.5rem;
+      font-family: 'Segoe UI', sans-serif;
     }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
+    .navbar {
+      background-color: #192a46;
     }
-    img {
-      width: 100%;
-      border-radius: 8px;
+    .navbar a {
+      color: white !important;
     }
-    h2 {
-      color: #f97316;
+    .navbar a:hover {
+      color: #7d4efc !important;
+    }
+    .recipe-header {
+      margin-top: 30px;
+    }
+    .recipe-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+    .recipe-img {
+      border-radius: 15px;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
+    }
+    .section-title {
+      margin-top: 40px;
+      border-bottom: 2px solid #5c8df6;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .btn-purple {
+      background-color: #7d4efc;
+      color: white;
+    }
+    .btn-purple:hover {
+      background-color: #5c3ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>French Crêpes</h1>
-    <p>Delicate thin pancakes, sweet or savory</p>
-  </header>
-  <div class="container">
-    <img src="https://source.unsplash.com/800x400/?crepes,french-dessert" alt="Crepes">
-    <h2>Ingredients</h2>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="homepage.html">FoodieHub</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuisine">Cuisines</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="favourites.html">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container recipe-header">
+    <div class="text-center mb-4">
+      <button class="btn btn-purple">❤️ Add to Favourites</button>
+    </div>
+
+    <h1 class="text-center">Crepes</h1>
+    <p class="text-center text-secondary">Prep time: 5 mins | Cook time: 10 mins | Serves: 2</p>
+
+    <div class="recipe-img-container">
+      <img src="photos/crepes.jpg" class="img-fluid recipe-img" alt="Crepes" />
+    </div>
+
+    <h3 class="section-title">Ingredients</h3>
     <ul>
-      <li>1 cup all-purpose flour</li>
+      <li>1 cup flour</li>
       <li>2 eggs</li>
       <li>1/2 cup milk</li>
-      <li>1/2 cup water</li>
-      <li>2 tbsp melted butter</li>
+      <li>1 tbsp melted butter</li>
+      <li>1 tsp vanilla extract</li>
       <li>Pinch of salt</li>
+      <li>Butter for cooking</li>
     </ul>
-    <h2>Instructions</h2>
+
+    <h3 class="section-title">Instructions</h3>
     <ol>
-      <li>Whisk flour and eggs together, then add milk and water gradually.</li>
-      <li>Mix in melted butter and a pinch of salt.</li>
-      <li>Heat a non-stick pan, pour a ladle of batter and spread thin.</li>
-      <li>Cook for 1-2 minutes per side until golden.</li>
-      <li>Fill with fruits, chocolate, or savory toppings of choice.</li>
+      <li>Mix flour, eggs, milk, melted butter, vanilla, and salt into a smooth batter.</li>
+      <li>Heat a non-stick pan with butter. Pour in a small amount of batter.</li>
+      <li>Cook for 1-2 minutes per side, flipping to brown both sides.</li>
+      <li>Serve with your favorite fillings like fruits or Nutella.</li>
     </ol>
+
+    <div class="text-center mt-5">
+      <a href="homepage.html" class="btn btn-purple">⬅ Back to Homepage</a>
+    </div>
   </div>
+
 </body>
 </html>

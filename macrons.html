@@ -2,62 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Macarons Recipe</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Macrons - FoodieHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      background-color: #f8d7da;
-      color: #333;
+      background-color: #0e1b30;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
     }
-    .recipe-container {
-      padding: 50px 20px;
+    .navbar {
+      background-color: #192a46;
     }
-    .recipe-image {
+    .navbar a {
+      color: white !important;
+    }
+    .navbar a:hover {
+      color: #7d4efc !important;
+    }
+    .recipe-header {
+      margin-top: 30px;
+    }
+    .recipe-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+    .recipe-img {
+      border-radius: 15px;
+      max-height: 100%;
       max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
     }
-    h2 {
-      color: #ff69b4;
-      font-weight: bold;
+    .section-title {
+      margin-top: 40px;
+      border-bottom: 2px solid #5c8df6;
+      display: inline-block;
+      padding-bottom: 5px;
     }
-    h4 {
-      color: #ff6347;
-      margin-top: 25px;
+    .btn-purple {
+      background-color: #7d4efc;
+      color: white;
     }
-    ul, ol {
-      line-height: 1.8;
+    .btn-purple:hover {
+      background-color: #5c3ccc;
     }
   </style>
 </head>
 <body>
 
-  <div class="container recipe-container">
-    <h2>Macarons</h2>
-    <img src="https://source.unsplash.com/800x400/?macaron" alt="Macarons" class="recipe-image my-3" />
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="homepage.html">FoodieHub</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuisine">Cuisines</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="favourites.html">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <h4>Ingredients:</h4>
+  <div class="container recipe-header">
+    <div class="text-center mb-4">
+      <button class="btn btn-purple">❤️ Add to Favourites</button>
+    </div>
+
+    <h1 class="text-center">Macrons</h1>
+    <p class="text-center text-secondary">Prep time: 30 mins | Cook time: 20 mins | Serves: 6</p>
+
+    <div class="recipe-img-container">
+      <img src="photos/macrons.jpeg" class="img-fluid recipe-img" alt="Macrons" />
+    </div>
+
+    <h3 class="section-title">Ingredients</h3>
     <ul>
-      <li>1 cup powdered sugar</li>
-      <li>3/4 cup almond flour</li>
-      <li>2 large egg whites</li>
+      <li>1 3/4 cups powdered sugar</li>
+      <li>1 cup almond flour</li>
+      <li>3 large egg whites</li>
       <li>1/4 cup granulated sugar</li>
       <li>1/4 tsp cream of tartar</li>
-      <li>Food coloring (optional)</li>
-      <li>Buttercream for filling</li>
+      <li>Buttercream or jam for filling</li>
     </ul>
 
-    <h4>Instructions:</h4>
+    <h3 class="section-title">Instructions</h3>
     <ol>
-      <li>Sift together powdered sugar and almond flour.</li>
-      <li>Beat egg whites with cream of tartar until stiff peaks form. Gradually add granulated sugar.</li>
-      <li>Fold in the almond mixture and food coloring until smooth.</li>
-      <li>Pipe the mixture into circles on a baking sheet. Let it sit for 30 minutes to form a shell.</li>
-      <li>Bake at 300°F (150°C) for 12-15 minutes. Let cool.</li>
-      <li>Fill with buttercream and sandwich the macaron shells together.</li>
+      <li>Preheat the oven to 300°F (150°C). Line baking sheets with parchment paper.</li>
+      <li>Whisk egg whites with cream of tartar until soft peaks form, then add sugar.</li>
+      <li>Fold in almond flour and powdered sugar mixture.</li>
+      <li>Pipe the batter into circles on the prepared baking sheets.</li>
+      <li>Bake for 15-20 minutes. Cool before filling with buttercream or jam.</li>
     </ol>
+
+    <div class="text-center mt-5">
+      <a href="homepage.html" class="btn btn-purple">⬅ Back to Homepage</a>
+    </div>
   </div>
 
 </body>

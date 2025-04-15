@@ -1,3 +1,105 @@
+
+<?php
+session_start();
+require_once 'config.php';
+
+if (!isset($_SESSION['id'])) {
+    header("Location: auth.php?action=login");
+    exit();
+}
+
+$user_id = $_SESSION['id'];
+$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+if ($mysqli->connect_error) {
+    die("Database connection failed: " . $mysqli->connect_error);
+}
+
+// Fetch user data
+$user = [];
+$stmt = $mysqli->prepare("
+    SELECT username, email, address
+    FROM users 
+    WHERE id = ?
+");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+
+// Fetch dietary preferences
+$diet = [
+    'vegetarian'  => 0,
+    'spice_level' => 'Medium',
+    'allergies'   => 'None'
+];
+$stmt = $mysqli->prepare("
+    SELECT vegetarian, spice_level, allergies 
+    FROM dietary_preferences 
+    WHERE user_id = ?
+");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $diet = $result->fetch_assoc();
+}
+$stmt->close();
+
+// Fetch favorites
+$favorites = [];
+$stmt = $mysqli->prepare("
+    SELECT r.title 
+    FROM favorites f
+    JOIN recipes r ON f.recipe_id = r.id
+    WHERE f.user_id = ?
+");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $favorites[] = $row['title'];
+}
+$stmt->close();
+
+// Fetch orders
+$orders = [];
+$stmt = $mysqli->prepare("
+    SELECT id, order_date, total
+    FROM orders
+    WHERE user_id = ?
+    ORDER BY order_date DESC
+");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($order = $result->fetch_assoc()) {
+    // Fetch order items
+    $items = [];
+    $stmt_items = $mysqli->prepare("
+        SELECT r.title, oi.price
+        FROM order_items oi
+        JOIN recipes r ON oi.recipe_id = r.id
+        WHERE oi.order_id = ?
+    ");
+    $stmt_items->bind_param("i", $order['id']);
+    $stmt_items->execute();
+    $items_result = $stmt_items->get_result();
+    
+    while ($item = $items_result->fetch_assoc()) {
+        $items[] = $item;
+    }
+    
+    $order['items'] = $items;
+    $orders[]       = $order;
+    $stmt_items->close();
+}
+
+$stmt->close();
+$mysqli->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +174,7 @@
     .profile-details h4 {
       margin: 0;
       font-weight: 700;
+      color: #ffffff;
     }
     .profile-details p {
       margin: 0;
@@ -184,11 +287,14 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Homepage</a>
+            <a class="nav-link" href="homepage.php">Homepage</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cuisines</a>
+            <a class="nav-link" href="homepage.php">Cuisines</a>
           </li>
+          <li class="nav-item">
+    <a class="nav-link" href="logout.php">Logout</a>
+  </li>
         </ul>
       </div>
     </div>
@@ -208,16 +314,18 @@
           />
           <!-- User Details -->
           <div class="profile-details">
-            <h4>Sarah Johnson</h4>
+            <h4><?= htmlspecialchars($user['username'] ?? 'N/A') ?></h4>
             <p>
-              sarah.j@email.com<br/>
-              +1 1231234567<br/>
-              123 Main Street, New York, NY 10001
+              <?= htmlspecialchars($user['email'] ?? 'N/A') ?><br/>
+              <?= htmlspecialchars($user['address'] ?? 'N/A') ?>
             </p>
           </div>
         </div>
         <!-- Edit Profile Button -->
-        <button class="btn btn-edit">Edit Profile</button>
+        <!-- You can change this to an anchor if needed -->
+        <button class="btn btn-edit" onclick="window.location.href='edit-profile.php'">
+          Edit Profile
+        </button>
       </div>
     </div>
 
@@ -226,62 +334,84 @@
       <div class="col-md-6">
         <div class="dark-card h-100">
           <h5>Dietary Preferences</h5>
-          <p class="mb-1"><strong>Diet Type:</strong> Vegetarian</p>
-          <p class="mb-1"><strong>Spice Level:</strong> Medium</p>
-          <p class="mb-0"><strong>Allergies:</strong> None</p>
+          <p class="mb-1">
+            <strong>Diet Type:</strong> 
+            <?= ($diet['vegetarian'] ?? 0) ? 'Vegetarian' : 'Non-vegetarian' ?>
+          </p>
+          <p class="mb-1">
+            <strong>Spice Level:</strong> 
+            <?= htmlspecialchars($diet['spice_level'] ?? 'Medium') ?>
+          </p>
+          <p class="mb-0">
+            <strong>Allergies:</strong> 
+            <?= htmlspecialchars($diet['allergies'] ?? 'None') ?>
+          </p>
         </div>
       </div>
       <div class="col-md-6">
         <div class="dark-card h-100">
           <h5>Favorite Items</h5>
-          <p class="mb-2">Butter Chicken</p>
-          <p class="mb-0">Vegetable Biryani</p>
+          <?php if (!empty($favorites)): ?>
+            <?php 
+              // For spacing consistency, let's show each favorite item in its own paragraph.
+              $i = 0;
+              foreach ($favorites as $fav):
+            ?>
+              <p class="<?= $i < count($favorites) - 1 ? 'mb-2' : 'mb-0' ?>">
+                <?= htmlspecialchars($fav) ?>
+              </p>
+              <?php $i++; ?>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p class="mb-0">No favorite items</p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
 
     <!-- New Row for "Edit Preferences & Favorites" Button -->
     <div class="mb-4 text-center">
-      <a href="edit-preferences.html" class="btn-pref">Edit Preferences &amp; Favorites</a>
+      <!-- Adjust link if needed (e.g., "edit-preferences.php") -->
+      <a href="edit-preferences.php" class="btn-pref">
+        Edit Preferences &amp; Favorites
+      </a>
     </div>
 
     <!-- Order History Section -->
     <div class="bottom-section">
       <div class="dark-card">
         <h5>Order History</h5>
-        <!-- Example: Order Card #1 -->
-        <div class="card order-card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Order #1</span>
-            <span class="order-date">2024-01-10</span>
-          </div>
-          <div class="card-body">
-            <div class="order-item">
-              <span>Butter Chicken</span>
-              <span>$24.99</span>
+        <?php if (!empty($orders)): ?>
+          <?php foreach ($orders as $order): ?>
+            <div class="card order-card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Order #<?= htmlspecialchars($order['id']) ?></span>
+                <span class="order-date">
+                  <?= date('Y-m-d', strtotime($order['order_date'])) ?>
+                </span>
+              </div>
+              <div class="card-body">
+                <?php foreach ($order['items'] as $item): ?>
+                  <div class="order-item">
+                    <span><?= htmlspecialchars($item['title']) ?></span>
+                    <span>$<?= number_format($item['price'], 2) ?></span>
+                  </div>
+                <?php endforeach; ?>
+                <!-- If you want to display the total -->
+                <?php if (isset($order['total'])): ?>
+                  <div class="order-item pt-2">
+                    <span><strong>Total</strong></span>
+                    <span><strong>$<?= number_format($order['total'], 2) ?></strong></span>
+                  </div>
+                <?php endif; ?>
+              </div>
             </div>
-            <div class="order-item">
-              <span>Raita</span>
-              <span>$2.99</span>
-            </div>
-          </div>
-        </div>
-        <!-- Example: Order Card #2 -->
-        <div class="card order-card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Order #2</span>
-            <span class="order-date">2024-01-09</span>
-          </div>
-          <div class="card-body">
-            <div class="order-item">
-              <span>Vegetable Biryani</span>
-              <span>$18.50</span>
-            </div>
-          </div>
-        </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p class="mt-3">No orders found</p>
+        <?php endif; ?>
       </div>
     </div>
-    
   </div>
 
   <!-- Bootstrap JS (Optional for interactivity) -->

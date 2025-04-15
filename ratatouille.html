@@ -1,62 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ratatouille Recipe</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ratatouille - FoodieHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9fafb;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #374151;
+      background-color: #0e1b30;
       color: white;
-      text-align: center;
-      padding: 1.5rem;
+      font-family: 'Segoe UI', sans-serif;
     }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
+    .navbar {
+      background-color: #192a46;
     }
-    img {
-      width: 100%;
-      border-radius: 8px;
+    .navbar a {
+      color: white !important;
     }
-    h2 {
-      color: #374151;
+    .navbar a:hover {
+      color: #7d4efc !important;
+    }
+    .recipe-header {
+      margin-top: 30px;
+    }
+    .recipe-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+    .recipe-img {
+      border-radius: 15px;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
+    }
+    .section-title {
+      margin-top: 40px;
+      border-bottom: 2px solid #5c8df6;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .btn-purple {
+      background-color: #7d4efc;
+      color: white;
+    }
+    .btn-purple:hover {
+      background-color: #5c3ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Ratatouille</h1>
-    <p>Classic French Vegetable Stew</p>
-  </header>
-  <div class="container">
-    <img src="https://source.unsplash.com/800x400/?ratatouille,french-food" alt="Ratatouille">
-    <h2>Ingredients</h2>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="homepage.html">FoodieHub</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuisine">Cuisines</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="favourites.html">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container recipe-header">
+    <div class="text-center mb-4">
+      <button class="btn btn-purple">❤️ Add to Favourites</button>
+    </div>
+
+    <h1 class="text-center">Ratatouille</h1>
+    <p class="text-center text-secondary">Prep time: 20 mins | Cook time: 40 mins | Serves: 4</p>
+
+    <div class="recipe-img-container">
+      <img src="photos/ratatouille.jpg" class="img-fluid recipe-img" alt="Ratatouille" />
+    </div>
+
+    <h3 class="section-title">Ingredients</h3>
     <ul>
-      <li>1 zucchini, sliced</li>
-      <li>1 eggplant, sliced</li>
-      <li>1 bell pepper, chopped</li>
-      <li>2 tomatoes, chopped</li>
-      <li>1 onion, diced</li>
+      <li>1 eggplant, thinly sliced</li>
+      <li>1 zucchini, thinly sliced</li>
+      <li>1 yellow squash, thinly sliced</li>
+      <li>1 red bell pepper, thinly sliced</li>
+      <li>1 yellow bell pepper, thinly sliced</li>
+      <li>1 cup crushed tomatoes</li>
       <li>2 cloves garlic, minced</li>
-      <li>2 tbsp olive oil</li>
-      <li>Salt and herbs (thyme, basil)</li>
+      <li>1 tbsp olive oil</li>
+      <li>1 tsp dried thyme</li>
+      <li>Salt and pepper to taste</li>
+      <li>Fresh basil for garnish</li>
     </ul>
-    <h2>Instructions</h2>
+
+    <h3 class="section-title">Instructions</h3>
     <ol>
-      <li>Heat olive oil in a pan, sauté onion and garlic.</li>
-      <li>Add bell pepper and cook until slightly soft.</li>
-      <li>Add zucchini, eggplant, and tomatoes.</li>
-      <li>Season with salt and herbs.</li>
-      <li>Cover and simmer for 25-30 minutes.</li>
+      <li>Preheat the oven to 375°F (190°C).</li>
+      <li>Spread crushed tomatoes on the bottom of a baking dish. Add garlic, thyme, salt, and pepper.</li>
+      <li>Layer sliced vegetables in alternating colors in a spiral or row pattern over the tomato base.</li>
+      <li>Drizzle olive oil on top and cover with foil. Bake for 30 minutes.</li>
+      <li>Uncover and bake for another 10 minutes until veggies are tender and slightly golden.</li>
+      <li>Garnish with fresh basil and serve warm with crusty bread.</li>
     </ol>
+
+    <div class="text-center mt-5">
+      <a href="homepage.html" class="btn btn-purple">⬅ Back to Homepage</a>
+    </div>
   </div>
+
 </body>
+</html>

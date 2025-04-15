@@ -11,6 +11,7 @@
       margin: 0;
       background-color: #0f172a;
       color: #ffffff;
+      overflow-x: hidden;
     }
     header {
       background-color: #0f172a;
@@ -37,10 +38,10 @@
       font-weight: 500;
     }
     .hero {
-      background-image: url("image.png");
+      background-image: url("photos/indian2.jpg");
       background-size: cover;
       background-position: center;
-      padding: 4rem 6rem;
+      padding: 8rem 2rem;
       text-align: center;
       color: white;
     }
@@ -56,26 +57,34 @@
       font-size: 1.5rem;
       font-weight: 600;
     }
+
+    /* Responsive Grid Layout for Recipe Cards */
     .dish-container {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       padding: 0 2rem 2rem 2rem;
     }
+
     .dish-card {
+      position: relative; /* Needed to position the favorite button absolutely */
       background-color: #1e293b;
       border-radius: 1rem;
       overflow: hidden;
-      flex: 1;
       display: flex;
       flex-direction: column;
     }
     .dish-card img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: 250px;
+      object-fit: cover; /* Maintains image aspect ratio while filling its container */
     }
     .dish-content {
       padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .dish-title {
       font-size: 1.2rem;
@@ -109,6 +118,49 @@
       background-color: transparent;
       color: #94a3b8;
       border: 1px solid #94a3b8;
+    }
+
+    /* Favorite (Heart) Button */
+    .fav-btn {
+      position: absolute; /* Absolute positioning inside the card */
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .fav-btn:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    .fav-btn img {
+      width: 20px;
+      height: 20px;
+      filter: invert(100%);
+    }
+    /* When button is toggled, you could style it differently. Example: a red heart */
+    .fav-btn.favorited img {
+      filter: none; /* remove invert filter so it can appear in another color, or show a different icon if you prefer */
+    }
+
+    /* Custom Footer Styling */
+    .footer {
+      background-color: #0f172a;
+      color: #cbd5e1;
+      padding: 2rem 0;
+    }
+    .footer a {
+      color: #6366f1;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>

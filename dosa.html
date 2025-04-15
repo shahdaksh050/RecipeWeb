@@ -2,101 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Masala Dosa Recipe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masala Dosa - FoodieHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #ef4444;
+      background-color: #0e1b30;
       color: white;
-      padding: 1rem 2rem;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
     }
-
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    .navbar {
+      background-color: #192a46;
     }
-
-    h1 {
-      text-align: center;
-      color: #ef4444;
+    .navbar a {
+      color: white !important;
     }
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-      margin-bottom: 1.5rem;
+    .navbar a:hover {
+      color: #7d4efc !important;
     }
-
-    h2, h3 {
-      color: #ef4444;
+    .recipe-header {
+      margin-top: 30px;
     }
-
-    ul, ol {
-      padding-left: 1.5rem;
+    .recipe-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+      margin-bottom: 30px;
     }
-
-    li {
-      margin-bottom: 0.5rem;
+    .recipe-img {
+      border-radius: 15px;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
     }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #64748b;
+    .section-title {
+      margin-top: 40px;
+      border-bottom: 2px solid #5c8df6;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .btn-purple {
+      background-color: #7d4efc;
+      color: white;
+    }
+    .btn-purple:hover {
+      background-color: #5c3ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Masala Dosa Recipe</h1>
-  </header>
 
-  <div class="container">
-    <img src="https://source.unsplash.com/800x400/?masala-dosa,indian-food" alt="Masala Dosa" />
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="homepage.html">FoodieHub</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuisine">Cuisines</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="favourites.html">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <h2>Ingredients</h2>
+  <div class="container recipe-header">
+    <div class="text-center mb-4">
+      <button class="btn btn-purple">❤️ Add to Favourites</button>
+    </div>
+
+    <h1 class="text-center">Masala Dosa</h1>
+    <p class="text-center text-secondary">Prep time: 20 mins | Cook time: 20 mins | Serves: 2</p>
+
+    <div class="recipe-img-container">
+      <img src="photos/dosa.jpg" class="img-fluid recipe-img" alt="Masala Dosa" />
+    </div>
+
+    <h3 class="section-title">Ingredients</h3>
     <ul>
-      <li>2 cups dosa batter (fermented)</li>
+      <li>2 cups dosa batter</li>
       <li>2 boiled potatoes, mashed</li>
       <li>1 onion, sliced</li>
       <li>1/2 tsp mustard seeds</li>
-      <li>1/4 tsp turmeric powder</li>
-      <li>1/2 tsp cumin seeds</li>
-      <li>5-6 curry leaves</li>
       <li>1 green chili, chopped</li>
+      <li>1/2 tsp turmeric powder</li>
+      <li>1 tbsp oil</li>
       <li>Salt to taste</li>
-      <li>Oil or ghee for cooking</li>
     </ul>
 
-    <h2>Instructions</h2>
+    <h3 class="section-title">Instructions</h3>
     <ol>
-      <li>Heat oil in a pan, add mustard seeds, cumin seeds, and let them splutter.</li>
-      <li>Add curry leaves, green chili, and sliced onion. Sauté till translucent.</li>
-      <li>Add turmeric and mashed potatoes. Mix well and cook for 2-3 minutes. Set aside.</li>
-      <li>Heat a non-stick tawa, spread dosa batter evenly to make a thin crepe.</li>
-      <li>Drizzle some oil around the edges and cook till golden brown.</li>
-      <li>Place the potato mixture in the center, fold the dosa, and serve hot with chutney and sambar.</li>
+      <li>Heat oil, add mustard seeds, onions, chili, turmeric. Sauté well.</li>
+      <li>Add mashed potatoes and salt. Cook the filling.</li>
+      <li>Pour dosa batter on hot tawa, spread thin.</li>
+      <li>Place filling in center. Fold dosa and serve with chutney.</li>
     </ol>
+
+    <div class="text-center mt-5">
+      <a href="homepage.html" class="btn btn-purple">⬅ Back to Homepage</a>
+    </div>
   </div>
 
-  <footer>
-    &copy; 2025 FoodieHub | Masala Dosa Recipe
-  </footer>
 </body>
 </html>

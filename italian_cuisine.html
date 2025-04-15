@@ -11,6 +11,7 @@
       margin: 0;
       background-color: #0f172a;
       color: #ffffff;
+      overflow-x: hidden;
     }
     header {
       background-color: #0f172a;
@@ -37,10 +38,10 @@
       font-weight: 500;
     }
     .hero {
-      background-image: url('https://images.unsplash.com/photo-1601315576603-1f3f00ebf60d');
+      background-image: url("photos/italian\ cuisine\ .avif");
       background-size: cover;
       background-position: center;
-      padding: 4rem 2rem;
+      padding: 8rem 2rem;
       text-align: center;
       color: white;
     }
@@ -56,26 +57,34 @@
       font-size: 1.5rem;
       font-weight: 600;
     }
+
+    /* Responsive Grid Layout for Recipe Cards */
     .dish-container {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       padding: 0 2rem 2rem 2rem;
     }
+
     .dish-card {
+      position: relative; /* Needed to position the favorite button absolutely */
       background-color: #1e293b;
       border-radius: 1rem;
       overflow: hidden;
-      flex: 1;
       display: flex;
       flex-direction: column;
     }
     .dish-card img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: 250px;
+      object-fit: cover; /* Maintains image aspect ratio while filling its container */
     }
     .dish-content {
       padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .dish-title {
       font-size: 1.2rem;
@@ -110,13 +119,56 @@
       color: #94a3b8;
       border: 1px solid #94a3b8;
     }
+
+    /* Favorite (Heart) Button */
+    .fav-btn {
+      position: absolute; /* Absolute positioning inside the card */
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .fav-btn:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    .fav-btn img {
+      width: 20px;
+      height: 20px;
+      filter: invert(100%);
+    }
+    /* When button is toggled, you could style it differently. Example: a red heart */
+    .fav-btn.favorited img {
+      filter: none; /* remove invert filter so it can appear in another color, or show a different icon if you prefer */
+    }
+
+    /* Custom Footer Styling */
+    .footer {
+      background-color: #0f172a;
+      color: #cbd5e1;
+      padding: 2rem 0;
+    }
+    .footer a {
+      color: #6366f1;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">🍴<span>FoodieHub</span></div>
     <nav>
-      <a href="#">Homepage</a>
+      <a href="homepage.html">Homepage</a>
       <a href="#">Cuisines</a>
     </nav>
     <div>👤</div>
@@ -130,7 +182,7 @@
     <h2 class="section-title">Popular Dishes</h2>
     <div class="dish-container">
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1594007654729-e2428aef1f2b" alt="Pizza" />
+        <img src="photos/PIZZA.jpg" alt="Pizza" />
         <div class="dish-content">
           <div class="dish-title">Pizza</div>
           <div class="dish-info">
@@ -140,14 +192,14 @@
           </div>
           <div class="buttons">
             <button class="btn btn-order">Order Now</button>
-            <button class="btn btn-view">View Recipe</button>
+            <a href="pizza.html"><button class="btn btn-view">View Recipe</button></a>
           </div>
         </div>
       </div>
       <div class="dish-card">
-        <img src="https://images.unsplash.com/photo-1603079831812-46c37f90f29f" alt="Pasta & Garlic Bread" />
+        <img src="photos/tiramisu.jpg" alt="Tiramisu" />
         <div class="dish-content">
-          <div class="dish-title">Pasta & Garlic Bread</div>
+          <div class="dish-title">Tiramisu</div>
           <div class="dish-info">
             <span>⭐ 4.9</span>
             <span>⏱ 60 mins</span>
@@ -155,7 +207,37 @@
           </div>
           <div class="buttons">
             <button class="btn btn-order">Order Now</button>
-            <button class="btn btn-view">View Recipe</button>
+            <a href="tiramisu.html"><button class="btn btn-view">View Recipe</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="photos/pasta.jpg" alt="Pasta & Garlic Bread" />
+        <div class="dish-content">
+          <div class="dish-title">Pasta & Garlic Bread</div>
+          <div class="dish-info">
+            <span>⭐ 4.8</span>
+            <span>⏱ 45 mins</span>
+            <span>Medium</span>
+          </div>
+          <div class="buttons">
+            <button class="btn btn-order">Order Now</button>
+            <a href="pasta.html"><button class="btn btn-view">View Recipe</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="photos/risotto.avif" alt="Risotto" />
+        <div class="dish-content">
+          <div class="dish-title">Risotto</div>
+          <div class="dish-info">
+            <span>⭐ 4.8</span>
+            <span>⏱ 45 mins</span>
+            <span>Medium</span>
+          </div>
+          <div class="buttons">
+            <button class="btn btn-order">Order Now</button>
+            <a href="risotto.html"><button class="btn btn-view">View Recipe</button></a>
           </div>
         </div>
       </div>
