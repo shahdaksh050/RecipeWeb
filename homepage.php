@@ -35,7 +35,7 @@ session_start();
       color: white;
     }
     .hero {
-      background: url('photos/world2.jpg') no-repeat center center/cover;
+      background: linear-gradient(rgba(14,17,38,0.6), rgba(14,17,38,0.6)), url('photos/world2.jpg') no-repeat center center/cover;
       padding: 100px 0;
       text-align: center;
     }
@@ -64,11 +64,21 @@ session_start();
       border: none;
       position: relative;
       height: 100%;
-    }
+    
+  backdrop-filter: blur(10px);
+  background: rgba(26, 28, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+    
     .card .btn {
       background-color: #7b2cbf;
       color: white;
     }
+    .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(123, 44, 191, 0.3);
+  transition: all 0.3s ease;
+}
     .section-title {
       font-size: 1.8rem;
       font-weight: 600;
@@ -263,6 +273,7 @@ session_start();
         icon.classList.toggle('liked');
       });
     });
+    <button onclick="topFunction()" id="scrollTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
   </script>
 </body>
 </html>

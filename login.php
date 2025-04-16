@@ -97,6 +97,16 @@ if (isset($_GET['message'])) {
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body { font-family: "Inter", sans-serif; background-color: #0f172a; }
+      .site-heading {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  color: #facc15; /* bright yellow for pop */
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  letter-spacing: 1px;
+  font-family: 'Inter', sans-serif;
+}
       .auth-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; width: 100%; }
       .auth-card { width: 480px; border-radius: 16px; background-color: #1e293b; box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.3); padding: 32px; }
       .auth-tabs { display: flex; border-bottom: 1px solid #334155; margin-bottom: 24px; }
@@ -120,6 +130,7 @@ if (isset($_GET['message'])) {
   <body>
     <section class="auth-container">
       <div class="auth-card">
+      <h1 class="site-heading">🍽️ Foodie Hub</h1>
         <nav class="auth-tabs">
           <button class="tab-item <?php echo ($action === 'login') ? 'active' : ''; ?>" onclick="window.location.href='auth.php?action=login'">Login</button>
           <button class="tab-item <?php echo ($action === 'signup') ? 'active' : ''; ?>" onclick="window.location.href='auth.php?action=signup'">Sign Up</button>
