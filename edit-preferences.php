@@ -315,61 +315,32 @@ if (!$mysqli->connect_error) {
     <div class="section-card">
       <div class="section-header">Favorite Items</div>
       <div class="row g-3">
-        <!-- Example Favorite Item #1 -->
-        <div class="col-md-6">
-          <div class="card favorite-card">
-            <div class="card-body">
-              <h5 class="card-title">Butter Chicken</h5>
-              <p class="card-text">$14.99</p>
-            </div>
-          </div>
-        </div>
-        <!-- Example Favorite Item #2 -->
-        <div class="col-md-6">
-          <div class="card favorite-card">
-            <div class="card-body">
-              <h5 class="card-title">Vegetable Biryani</h5>
-              <p class="card-text">$12.99</p>
-            </div>
-          </div>
-        </div>
+        <?php
+        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        if (!$mysqli->connect_error) {
+            $stmt = $mysqli->prepare("SELECT r.title FROM favorites f JOIN recipes r ON f.recipe_id = r.id WHERE f.user_id = ?");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($fav = $result->fetch_assoc()) {
+                    echo '<div class="col-md-6">';
+                    echo '<div class="card favorite-card">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">' . htmlspecialchars($fav['title']) . '</h5>';
+                    echo '</div></div></div>';
+                }
+            } else {
+                echo '<p>No favorite items found.</p>';
+            }
+            $stmt->close();
+            $mysqli->close();
+        } else {
+            echo '<p>Unable to connect to database to fetch favorites.</p>';
+        }
+        ?>
       </div>
     </div>
-
-    <!-- Section: Order History -->
-    <div class="section-card">
-      <div class="section-header">Order History</div>
-      <div class="order-history-container">
-        <!-- Order Card #1 -->
-        <div class="card order-card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Order #1</span>
-            <span class="order-date">2024-01-10</span>
-          </div>
-          <div class="card-body">
-            <div class="order-item">
-              <span>Butter Chicken</span>
-              <span>$24.99</span>
-            </div>
-            <div class="order-item">
-              <span>Raita</span>
-              <span>$2.99</span>
-            </div>
-          </div>
-        </div>
-        <!-- Order Card #2 -->
-        <div class="card order-card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Order #2</span>
-            <span class="order-date">2024-01-09</span>
-          </div>
-          <div class="card-body">
-            <div class="order-item">
-              <span>Vegetable Biryani</span>
-              <span>$18.50</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     

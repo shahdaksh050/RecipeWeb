@@ -187,7 +187,7 @@ session_start();
         <a href="mexican_cuisine.html">
           <img src="photos/mexican1.jpg" class="cuisine-img" alt="Mexican">
         </a>
-        <p class="text-center mt-2">French</p>
+        <p class="text-center mt-2">Mexican</p>
       </div>
       <div class="col-6 col-md-4 col-lg-2">
         <a href="french_cuisine.html">
@@ -214,7 +214,7 @@ session_start();
             <span>⏱ 45 mins</span>
             <span class="rating-badge">⭐ 4.8</span>
           </div>
-          <a href="chole_bhature.html" class="btn mt-3">View Recipe</a>
+          <a href="recipe.php?title=Chole%20Bhature" class="btn mt-3">View Recipe</a>
         </div>
       </div>
       <div class="col-md-6">
@@ -226,7 +226,7 @@ session_start();
             <span>⏱ 20 mins</span>
             <span class="rating-badge">⭐ 3.7</span>
           </div>
-          <a href="nutella_strawberry.html" class="btn mt-3">View Recipe</a>
+          <a href="recipe.php?title=Nutella%20Strawberry%20Pancakes" class="btn mt-3">View Recipe</a>
         </div>
       </div>
     </div>
@@ -248,7 +248,7 @@ session_start();
             <span>⏱ 40 mins</span>
             <span class="rating-badge">⭐ 5.0</span>
           </div>
-          <a href="tiramisu.html" class="btn mt-3">View Recipe</a>
+          <a href="recipe.php?title=Classic%20Tiramisu" class="btn mt-3">View Recipe</a>
         </div>
       </div>
       <div class="col-md-6">
@@ -260,7 +260,7 @@ session_start();
             <span>⏱ 60 mins</span>
             <span class="rating-badge">⭐ 4.6</span>
           </div>
-          <a href="pizza.html" class="btn mt-3">View Recipe</a>
+          <a href="recipe.php?title=Classic%20Margherita%20Pizza" class="btn mt-3">View Recipe</a>
         </div>
       </div>
     </div>
