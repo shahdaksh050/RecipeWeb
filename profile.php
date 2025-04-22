@@ -375,42 +375,6 @@ $mysqli->close();
         Edit Preferences &amp; Favorites
       </a>
     </div>
-
-    <!-- Order History Section -->
-    <div class="bottom-section">
-      <div class="dark-card">
-        <h5>Order History</h5>
-        <?php if (!empty($orders)): ?>
-          <?php foreach ($orders as $order): ?>
-            <div class="card order-card">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <span>Order #<?= htmlspecialchars($order['id']) ?></span>
-                <span class="order-date">
-                  <?= date('Y-m-d', strtotime($order['order_date'])) ?>
-                </span>
-              </div>
-              <div class="card-body">
-                <?php foreach ($order['items'] as $item): ?>
-                  <div class="order-item">
-                    <span><?= htmlspecialchars($item['title']) ?></span>
-                    <span>$<?= number_format($item['price'], 2) ?></span>
-                  </div>
-                <?php endforeach; ?>
-                <!-- If you want to display the total -->
-                <?php if (isset($order['total'])): ?>
-                  <div class="order-item pt-2">
-                    <span><strong>Total</strong></span>
-                    <span><strong>$<?= number_format($order['total'], 2) ?></strong></span>
-                  </div>
-                <?php endif; ?>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <p class="mt-3">No orders found</p>
-        <?php endif; ?>
-      </div>
-    </div>
   </div>
 
   <!-- Bootstrap JS (Optional for interactivity) -->
