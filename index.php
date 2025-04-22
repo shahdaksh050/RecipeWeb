@@ -1,7 +1,4 @@
-
-
 <?php
-// auth.php
 session_start();
 require_once 'config.php'; // This file should define $mysqli
 

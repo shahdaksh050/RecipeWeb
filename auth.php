@@ -1,5 +1,4 @@
 <?php
-// auth.php
 
 session_start();
 require_once 'config.php'; // Ensure this file sets up $mysqli (MySQLi connection)

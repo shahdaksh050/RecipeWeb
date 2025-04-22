@@ -156,6 +156,9 @@ if (count($parts) == 2) {
             color: white !important;
             background-color: #0e1126 !important;
         }
+        .navbar .nav-item {
+            margin-left: 15px;
+        }
         .btn-purple {
             background-color: #0e1126;
             color: white;
@@ -285,12 +288,8 @@ if (count($parts) == 2) {
       <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon rounded"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="homepage.php" style="color: white !important;">Homepage</a>
-          </li>
-        </ul>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <a class="nav-link navbar-brand" href="homepage.php" style="padding-left: 0;">Homepage</a>
       </div>
   </nav>
     <div class="container">
