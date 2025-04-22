@@ -4,7 +4,7 @@ require_once 'config.php';
 
 // Check if the user is logged in
 if (!isset($_SESSION['id'])) {
-    header("Location: auth.php?action=login");
+    header("Location: index.php?action=login");
     exit();
 }
 

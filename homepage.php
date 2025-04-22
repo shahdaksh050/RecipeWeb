@@ -135,7 +135,7 @@ session_start();
                 <i class="fas fa-user-circle"></i>
               </a>
             <?php else: ?>
-              <a class="nav-link profile-icon" href="auth.php?action=login" title="Login">
+              <a class="nav-link profile-icon" href="index.php?action=login" title="Login">
                 <i class="fas fa-user-circle"></i>
               </a>
             <?php endif; ?>
