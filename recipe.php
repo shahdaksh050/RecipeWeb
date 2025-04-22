@@ -135,12 +135,19 @@ if (count($parts) == 2) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><?php echo htmlspecialchars($recipe['title']); ?> - FoodieHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #0e1b30;
             color: white;
             margin: 20px;
+        }
+        .navbar .nav-link,
+        .navbar .navbar-brand,
+        .navbar .profile-icon {
+            color: white !important;
         }
         .recipe-header {
             text-align: center;
@@ -161,9 +168,69 @@ if (count($parts) == 2) {
             margin: 0 auto 20px auto;
             padding-left: 20px;
         }
+        .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    .rating-badge {
+      background: #21244c;
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+    .favorite-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .favorite-icon.liked {
+      color: #ff4d6d;
+    }
+    .navbar .profile-icon {
+      font-size: 1.5rem;
+      color: white;
+    }
+    .navbar-nav .nav-link {
+      margin-left: 10px;
+    }
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.php">FoodieHub</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon bg-light rounded"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="homepage.php">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#cuisine-section">Cuisines</a>
+          </li>
+          <li class="nav-item">
+            <!-- Conditionally display profile or login based on session -->
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
+              <a class="nav-link profile-icon" href="profile.php" title="Profile">
+                <i class="fas fa-user-circle"></i>
+              </a>
+            <?php else: ?>
+              <a class="nav-link profile-icon" href="auth.php?action=login" title="Login">
+                <i class="fas fa-user-circle"></i>
+              </a>
+            <?php endif; ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <div class="recipe-header">
         <h1><?php echo htmlspecialchars($recipe['title']); ?></h1>
         <p>Prep time: <?php echo htmlspecialchars($recipe['prep_time']); ?> mins</p>
