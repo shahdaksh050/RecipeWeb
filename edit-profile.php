@@ -107,8 +107,12 @@ $mysqli->close();
       padding: 1.5rem;
       margin-top: 2rem;
     }
+    .edit-profile-card h4 {
+      color: #ffffff;
+    }
     .form-label {
       font-weight: 500;
+      color: #ffffff;
     }
     .btn-custom {
       background-color: #6366f1;
