@@ -1,4 +1,4 @@
-# RecipeWeb
+![image](https://github.com/user-attachments/assets/6eaf4534-f377-4241-bed7-d5744145adcb)# RecipeWeb
 
 RecipeWeb is a web application that makes it easy to browse, search, and manage recipes from a variety of world cuisines. Built using PHP, HTML, CSS, MySQL, and Bootstrap, it provides a clean and user-friendly interface — including Google login — for exploring new dishes and managing your own recipe preferences.
 
@@ -61,6 +61,49 @@ Each cuisine page displays relevant recipes and uses PHP to fetch and render con
 
 ---
 
+## 🧩 Data Flow Diagram (DFD) – Level 1
+
+Below is a simplified Level 1 Data Flow Diagram (DFD) that illustrates the main components and data flows in RecipeWeb:
+
+```
++-----------------+                               
+|    Browser      |  <--- (HTML, CSS, JS) --->   [User Interface]
++-----------------+                               
+         |                                      
+         v                                      
++---------------------+                         
+|     index.php       |  <--- (Redirects) --->  +------------------+
++---------------------+                         |  homepage.php    |
+         |                                      +------------------+
+         v
++---------------------+                         
+|   auth/login.php    |  <--- (POST: login) ---+
+|   auth/signup.php   |  <--- (POST: signup)   |
++---------------------+                        |
+         |                                     |
+         v                                     v
++------------------------------------------------------------+
+|                      Database (MySQL)                     |
+|  - users (login, signup, profile)                          |
+|  - recipes (fetch, list, details)                          |
+|  - preferences (user food prefs)                           |
++------------------------------------------------------------+
+         ^                                     |
+         |                                     |
++---------------------+                        |
+|   profile.php       | <--- (GET/POST) ------+
+|   edit-profile.php  | <--- (GET/POST) ------+
+|   edit-preferences.php <--- (GET/POST) -----+
++---------------------+                        |
+         |                                     |
+         v                                     v
++---------------------+              +----------------------+
+|    recipe.php       |  <--- (GET: recipe details) ------  |
++---------------------+              +----------------------+
+```
+
+---
+
 ## Google Login
 
 RecipeWeb allows users to log in using their Google account for a faster and more secure experience.  
@@ -113,4 +156,6 @@ A "Sign in with Google" button is visible on the login page after configuration.
     - Open `http://localhost/RecipeWeb/homepage.php` to get started.
 
 ---
-For questions or suggestions, open an issue in this repository.
+
+
+
