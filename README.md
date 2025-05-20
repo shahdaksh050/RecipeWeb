@@ -1,16 +1,16 @@
 # RecipeWeb
 
-RecipeWeb is a web app designed to help you find and manage recipes from a range of world cuisines. It is built using PHP, HTML, CSS, MySQL, and Bootstrap, with a focus on simplicity and a pleasant user experience.
+RecipeWeb is a web application that makes it easy to browse, search, and manage recipes from a variety of world cuisines. Built using PHP, HTML, CSS, MySQL, and Bootstrap, it provides a clean and user-friendly interface — including Google login — for exploring new dishes and managing your own recipe preferences.
 
 ---
 
 ## Features
 
-- **Cuisines:** Browse recipes grouped by cuisine—Indian, Chinese, Italian, Mexican, American, French, and more.
-- **Easy Authentication:** Log in with your own credentials or quickly sign in using your Google account (OAuth integration).
-- **Detailed Recipes:** Each recipe page provides ingredients, step-by-step instructions, and beautiful images.
-- **User Profiles:** Edit your details and set your personal preferences.
-- **Mobile-Friendly:** The layout is responsive and works well on all screen sizes, powered by Bootstrap.
+- **Browse by Cuisine:** Quickly find recipes grouped under Indian, Chinese, Italian, Mexican, American, and French cuisines.
+- **User Authentication:** Secure signup and login system, with the added convenience of Google OAuth.
+- **Recipe Pages:** Each recipe shows ingredients, preparation steps, and an image.
+- **User Profile & Preferences:** Edit your profile and set your favorite cuisines.
+- **Responsive Design:** Looks great on any device, thanks to Bootstrap.
 
 ---
 
@@ -19,111 +19,98 @@ RecipeWeb is a web app designed to help you find and manage recipes from a range
 - **Frontend:** HTML, CSS, Bootstrap
 - **Backend:** PHP
 - **Database:** MySQL
-- **Auth:** Native PHP authentication & Google OAuth
+- **Authentication:** PHP sessions & Google OAuth
 
 ---
 
-## Project Structure
+## Project Structure & File Overview
 
-```
-RecipeWeb/
-├── auth/                      # Login, signup, Google OAuth
-│   ├── login.php
-│   ├── signup.php
-│   └── google_auth.php
-├── photos/                    # All image assets
-├── american_cuisine.html
-├── chineese_cuisine.html
-├── config.php                 # DB connection settings
-├── edit-preferences.php       # Edit user preferences
-├── edit-profile.php           # Edit profile info
-├── foodiehub.sql              # Database schema
-├── french_cuisine.html
-├── homepage.php               # App landing page after login
-├── image.png                  # Sample image
-├── index.php                  # Main entry point / router
-├── indian_cuisine.html
-├── italian_cuisine.html
-├── logout.php                 # Ends user session
-├── mexican_cuisine.html
-├── profile.php                # User profile
-├── recipe.php                 # Single recipe details
-└── README.md                  # This file
-```
+### Folders
 
----
+- **auth/**  
+  Contains authentication scripts:
+  - `login.php`: Processes user login, checks credentials, starts sessions.
+  - `signup.php`: Handles new account creation, input validation, password hashing.
 
-## Key Files Explained
+- **photos/**  
+  All images for recipes and cuisines.
 
-- **index.php**  
-  Boots up the project and routes users to login or homepage depending on their session.
+### Root-Level Files
 
-- **homepage.php**  
-  Displays featured cuisines and an overview for logged-in users.
+| File                   | Description                                                                                                    |
+|------------------------|----------------------------------------------------------------------------------------------------------------|
+| `index.php`            | Redirects to `homepage.php`, main entry point.                                                                 |
+| `homepage.php`         | Main landing page, lists cuisines.                                                                             |
+| `config.php`           | Sets up MySQL database connection, included in most PHP scripts.                                               |
+| `logout.php`           | Logs the user out and redirects to login.                                                                      |
+| `edit-profile.php`     | Lets users update profile info like name and email.                                                            |
+| `edit-preferences.php` | Lets users set or change preferred cuisines and food types.                                                    |
+| `profile.php`          | Displays user info and preferences.                                                                            |
+| `recipe.php`           | Shows full recipe details (name, ingredients, image, instructions), loaded dynamically based on selected dish.  |
+| `foodiehub.sql`        | SQL dump to set up the project database and populate with starter data.                                        |
+### Cuisine Pages
 
-- **auth/login.php & auth/signup.php**  
-  Handle user authentication (with input validation and error handling).
+- `indian_cuisine.html`
+- `chineese_cuisine.html`
+- `italian_cuisine.html`
+- `mexican_cuisine.html`
+- `american_cuisine.html`
+- `french_cuisine.html`
 
-- **auth/google_auth.php**  
-  Lets users log in with their Google account using OAuth 2.0 (seamless and secure).
-
-- **config.php**  
-  Contains your MySQL connection info. All DB queries connect through here.
-
-- **recipe.php**  
-  Loads a particular recipe from the database and shows its details.
-
-- **profile.php**  
-  Lets users view and update their profile and preferences.
-
-- **edit-profile.php & edit-preferences.php**  
-  Simple forms for updating user info and favorite cuisines.
-
-- **logout.php**  
-  Safely logs the user out and destroys the session.
-
-- **[cuisine]_cuisine.html**  
-  Pages listing recipes for each cuisine (e.g., "indian_cuisine.html").
+Each cuisine page displays relevant recipes and uses PHP to fetch and render content.
 
 ---
 
 ## Google Login
 
-RecipeWeb supports Google sign-in for a quick and secure way to access your recipes.  
-To enable Google OAuth:
+RecipeWeb allows users to log in using their Google account for a faster and more secure experience.  
+To enable this:
 
-1. Set up a Google Cloud project and create OAuth credentials.
-2. Download the credentials and set your client ID/secret in `auth/google_auth.php`.
-3. Make sure your redirect URI matches what is set in Google Cloud.
+1. Create a Google Cloud project and set up OAuth credentials.
+2. Download the credentials and update `auth/google_auth.php` with your client ID and secret.
+3. Set the correct redirect URI on the Google Cloud Console and in your code.
 
-When enabled, users will see a "Sign in with Google" button on the login page.
+A "Sign in with Google" button is visible on the login page after configuration.
 
 ---
 
 ## Getting Started
 
-1. **Requirements:**  
-   - PHP 7 or newer  
-   - MySQL  
-   - Web server (Apache, Nginx, XAMPP, etc.)
+### Prerequisites
 
-2. **Install:**  
-   - Clone the repo:  
-     ```bash
-     git clone https://github.com/shahdaksh050/RecipeWeb.git
-     cd RecipeWeb
-     ```
-   - Import `foodiehub.sql` into your MySQL server.
-   - Update `config.php` with your DB credentials:
-     ```php
-     <?php
-     $conn = new mysqli("localhost", "your_username", "your_password", "recipeweb");
-     if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-     }
-     ?>
-     ```
-   - Place the directory in your web server’s root (e.g., `htdocs` for XAMPP).
+- PHP 7.x or newer
+- MySQL
+- Web server (Apache, Nginx, XAMPP, etc.)
 
-3. **Run:**  
-   - Open `http://localhost/RecipeWeb/homepage.php` in your browser.
+### Installation
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/shahdaksh050/RecipeWeb.git
+    cd RecipeWeb
+    ```
+
+2. **Set up the database:**
+    - Import `foodiehub.sql` into your MySQL server.
+
+3. **Configure database connection:**
+    - Edit `config.php` to match your MySQL credentials:
+    ```php
+    <?php
+    $conn = new mysqli("localhost", "your_username", "your_password", "recipeweb");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    ?>
+    ```
+
+4. **Set up Google OAuth (optional but recommended):**
+    - Create OAuth credentials in Google Cloud.
+    - Set `client_id`, `client_secret`, and redirect URI in `auth/google_auth.php`.
+
+5. **Run the application:**
+    - Copy the project folder to your web server’s root (e.g., `htdocs` for XAMPP).
+    - Open `http://localhost/RecipeWeb/homepage.php` to get started.
+
+---
+For questions or suggestions, open an issue in this repository.
