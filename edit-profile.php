@@ -29,18 +29,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($mysqli->connect_error) {
             $errorMsg = "Database connection failed: " . $mysqli->connect_error;
         } else {
-            // Prepare update statement
-            $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ?, address = ? WHERE id = ?");
-            if (!$stmt) {
-                $errorMsg = "Prepare failed: " . $mysqli->error;
-            } else {
-                $stmt->bind_param("sssi", $username, $email, $address, $user_id);
-                if ($stmt->execute()) {
-                    $successMsg = "Profile updated successfully.";
+            // Handle profile photo upload if a file was uploaded
+            $profile_photo_path = null;
+            if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] !== UPLOAD_ERR_NO_FILE) {
+                $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                $file_type = $_FILES['profile_photo']['type'];
+                if (!in_array($file_type, $allowed_types)) {
+                    $errorMsg = "Only JPG, PNG, GIF, and WEBP files are allowed for profile photo.";
                 } else {
-                    $errorMsg = "Failed to update profile.";
+                    $upload_dir = 'photos/profile/';
+                    if (!is_dir($upload_dir)) {
+                        mkdir($upload_dir, 0755, true);
+                    }
+                    $file_ext = pathinfo($_FILES['profile_photo']['name'], PATHINFO_EXTENSION);
+                    $new_filename = 'profile_' . $user_id . '.' . $file_ext;
+                    $destination = $upload_dir . $new_filename;
+                    if (move_uploaded_file($_FILES['profile_photo']['tmp_name'], $destination)) {
+                        $profile_photo_path = $destination;
+                    } else {
+                        $errorMsg = "Failed to upload profile photo.";
+                    }
                 }
-                $stmt->close();
+            }
+
+            if (empty($errorMsg)) {
+                // Prepare update statement with or without profile_photo
+                if ($profile_photo_path !== null) {
+                    $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ?, address = ?, profile_photo = ? WHERE id = ?");
+                    if (!$stmt) {
+                        $errorMsg = "Prepare failed: " . $mysqli->error;
+                    } else {
+                        $stmt->bind_param("ssssi", $username, $email, $address, $profile_photo_path, $user_id);
+                    }
+                } else {
+                    $stmt = $mysqli->prepare("UPDATE users SET username = ?, email = ?, address = ? WHERE id = ?");
+                    if (!$stmt) {
+                        $errorMsg = "Prepare failed: " . $mysqli->error;
+                    } else {
+                        $stmt->bind_param("sssi", $username, $email, $address, $user_id);
+                    }
+                }
+
+                if (empty($errorMsg)) {
+                    if ($stmt->execute()) {
+                        $successMsg = "Profile updated successfully.";
+                    } else {
+                        $errorMsg = "Failed to update profile.";
+                    }
+                    $stmt->close();
+                }
             }
             $mysqli->close();
         }
@@ -53,7 +90,7 @@ if ($mysqli->connect_error) {
     die("Database connection failed: " . $mysqli->connect_error);
 }
 
-$stmt = $mysqli->prepare("SELECT username, email, address FROM users WHERE id = ?");
+$stmt = $mysqli->prepare("SELECT username, email, address, profile_photo FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -161,7 +198,7 @@ $mysqli->close();
       <?php if (!empty($errorMsg)): ?>
         <div class="alert alert-danger message"><?= htmlspecialchars($errorMsg) ?></div>
       <?php endif; ?>
-      <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+<form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <!-- Username -->
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
@@ -196,6 +233,22 @@ $mysqli->close();
             rows="3"
             required
           ><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
+        </div>
+        <!-- Profile Photo -->
+        <div class="mb-3">
+          <label for="profile_photo" class="form-label">Profile Photo</label>
+          <?php if (!empty($user['profile_photo'])): ?>
+            <div class="mb-2">
+              <img src="<?= htmlspecialchars($user['profile_photo']) ?>" alt="Profile Photo" style="max-width: 150px; max-height: 150px; border-radius: 50%;" />
+            </div>
+          <?php endif; ?>
+          <input
+            type="file"
+            class="form-control"
+            id="profile_photo"
+            name="profile_photo"
+            accept="image/*"
+          />
         </div>
         <!-- Save Button -->
         <button type="submit" class="btn btn-custom">Save Changes</button>
