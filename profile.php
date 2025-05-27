@@ -17,7 +17,7 @@ if ($mysqli->connect_error) {
 // Fetch user data
 $user = [];
 $stmt = $mysqli->prepare("
-    SELECT username, email, address
+    SELECT username, email, address, profile_photo
     FROM users 
     WHERE id = ?
 ");
@@ -307,7 +307,7 @@ $mysqli->close();
         <div class="profile-info">
           <!-- User Avatar -->
           <img
-            src="https://via.placeholder.com/150x150"
+            src="<?= !empty($user['profile_photo']) ? htmlspecialchars($user['profile_photo']) : 'https://via.placeholder.com/150x150' ?>"
             alt="Profile Image"
             class="avatar"
           />
